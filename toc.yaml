@@ -1,0 +1,17 @@
+toc:
+  properties:
+    subcollection: watson-query-cli-plugin
+    category: database
+    audience: service
+    href: /docs/watson-query-cli-plugin
+    console-page: /catalog/services/watson-query
+    product-page: https://ibm.com/cloud/watson-query
+    path: watson-query-cli-plugin
+    label: Watson Query CLI
+
+  entries: 
+  - navgroup:
+      id: reference
+      topics: 
+      - watson-query-cli.md
+
