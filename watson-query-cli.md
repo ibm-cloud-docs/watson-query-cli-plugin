@@ -1,12 +1,12 @@
 ---
  
 copyright:
-  years: 2022
-lastupdated: "2022-01-10"
+  years: 2023
+lastupdated: "2023-03-06"
 
 subcollection: _your-cli-subcollection_
 
-keywords: Watson Query CLI, Watson Query command line , Watson Query terminal, Watson Query shell, Watson Query, Data Virtualization
+keywords: Watson Query CLI, Watson Query command line, Watson Query terminal, Watson Query shell, Watson Query, Data virtualization
 
 ---
 
@@ -22,47 +22,46 @@ keywords: Watson Query CLI, Watson Query command line , Watson Query terminal, W
 # Watson Query CLI
 {: #CLI-name}
 
-The {{site.data.keyword.cloud}} command-line interface (CLI) provides extra capabilities for service offerings. You can use {{site.data.keyword.cloud_notm}} CLI to manage service instance and virtualizations.
+The {{site.data.keyword.cloud}} command-line interface (CLI) provides extra capabilities for service offerings. You can use {{site.data.keyword.cloud_notm}} CLI to manage service instances and virtualized data.
 {: shortdesc} 
 
 ## Prerequisites
 {: #<cli_name>-cli-prereq}
 
 * Install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-getting-started).
-* Install the <CLI_name> CLI by running the following command:
+* Install the `watson-query` CLI by running the following command:
 
    ```sh
    ibmcloud plugin install watson-query
    ```
    {: pre}
 
-* Use [ibmcloud login command](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login) for logging in to your IBM Cloud account.
-* Set IBM Cloudant service URL. For more information, see Service configuration.
+* Log in to your {{site.data.keyword.cloud_notm}} account with the [ibmcloud login command](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login).
+* Set the IBM Cloudant service URL. For more information, see [Service configuration](#watson-query-service-configuration).
 
 You're notified on the command line when updates to the {{site.data.keyword.cloud_notm}} CLI and plug-ins are available. Be sure to keep your CLI up to date so that you can use the latest commands. You can view the current version of all installed plug-ins by running `ibmcloud plugin list`.
 {: tip}
 
 ## Service configuration
+{: #watson-query-service-configuration}
 
-When you make a server resource request, you can either set CRN environment variable or set --instance-id in each sub command to identify instance. To set environment variabel, firstly get CRN of service instance by
+When you make a server resource request, you can either set the CRN environment variable or set the --instance-id in each sub command to identify an instance. To set an environment variable, get the CRN of a service instance by running the following command:
    ```sh
    ibmcloud resource service-instances --service-name data-virtualization --long
    ```
 
-Then set the `DATA_VIRTUALIZATION_CRN` environment variable. You can define this variable two ways:
-
-Export them as environment variables for example,export `DATA_VIRTUALIZATION_CRN=....`
-Store them in a [credentials file](https://cloud.ibm.com/apidocs/cloudant?code=go#authentication-with-external-configuration).
+Then, set the `DATA_VIRTUALIZATION_CRN` environment variable. You can define this variable two ways:
+1. Export them as environment variables for example,export `DATA_VIRTUALIZATION_CRN=....`
+1. Store them in a [credentials file](https://cloud.ibm.com/apidocs/cloudant?code=go#authentication-with-external-configuration).
 As an alternative to `ibmcloud login`, you can set the environment variable `DATA_VIRTUALIZATION_APIKEY` to an IAM API key.
-{: tip}
 
-{{site.data.keyword.cloud_notm}} CLI requires Java&trade 1.8.0. You can download the CLI from {{site.data.keyword.cloud_notm}} to use on your local system as a complement to the {{site.data.keyword.cloud_notm}} console.
+{{site.data.keyword.cloud_notm}} CLI requires Java 1.8.0. You can download the CLI from {{site.data.keyword.cloud_notm}} to use on your local system as a complement to the {{site.data.keyword.cloud_notm}} console.
 {: note}
 
 ## Data sources
 {: #watson-query-data-sources-cli}
 
-Connect data sources to the watson query service.
+Connect data sources to the Watson Query instance.
 
 ### ibmcloud watson-query datasource-connections
 {: #watson-query-cli-datasource-connections-command}
@@ -77,7 +76,7 @@ ibmcloud watson-query datasource-connections
 #### Examples
 {: #watson-query-datasource-connections-cli-examples}
 
-Get data connections
+Get data connections.
 
 ```sh
 ibmcloud watson-query datasource-connections
@@ -117,7 +116,7 @@ ibmcloud watson-query datasource-connections
 ### ibmcloud watson-query datasource-connection-add
 {: #watson-query-cli-datasource-connection-add-command}
 
-Adds a data source connection to the watson query service.
+Adds a data source connection to the Watson Query instance.
 
 ```sh
 ibmcloud watson-query datasource-connection-add --datasource-type DATASOURCE-TYPE --name NAME --origin-country ORIGIN-COUNTRY --properties PROPERTIES [--asset-category ASSET-CATEGORY] 
@@ -134,7 +133,7 @@ ibmcloud watson-query datasource-connection-add --datasource-type DATASOURCE-TYP
 :   The name of data source. Required.
 
 --origin-country (string)
-:   The country of data source that you want to add which data originated from ISO 3166 Country Codes. Required.
+:   The country where data originated from that you want to add. ISO 3166 Country Codes. Required.
 
 --properties ([PostDatasourceConnectionParametersProperties](#cli-post-datasource-connection-parameters-properties-example-schema))
 :   Database information. Example: "{\"database\":\"db1\",\"host\":\"databases.example.com\", \"password\":\"adminpassword\", \"port\":\"31365\", \"ssl\":\"true\", \"username\":\"admin\"}". Required.
@@ -145,7 +144,7 @@ ibmcloud watson-query datasource-connection-add --datasource-type DATASOURCE-TYP
 #### Examples
 {: #watson-query-datasource-connection-add-cli-examples}
 
-Add datasource connections
+Add data source connections.
 
 ```sh
 ibmcloud watson-query datasource-connection-add --datasource-type MongoDB --name mongo1  --origin-country us  --properties  "{\"database\":\"db1\",\"host\":\"databases.example.com\", \"password"\:\"adminpassword\", \"port\":\"31365\", \"ssl\":\"true\", \"username\":\"admin\"}"
@@ -155,7 +154,7 @@ ibmcloud watson-query datasource-connection-add --datasource-type MongoDB --name
 ### ibmcloud watson-query datasource-connection-delete
 {: #watson-query-cli-datasource-connection-delete-command}
 
-Deletes a data source connection from the watson query service.
+Deletes a data source connection from the Watson Query instance.
 
 ```sh
 ibmcloud watson-query datasource-connection-delete --connection-id CONNECTION-ID --cid CID 
@@ -166,15 +165,15 @@ ibmcloud watson-query datasource-connection-delete --connection-id CONNECTION-ID
 {: #watson-query-datasource-connection-delete-cli-options}
 
 --connection-id (string)
-:   The connection identifier for the platform.. Required.
+:   The connection identifier for the platform. Required.
 
 --cid (string)
-:   The identifier of the connection for the watson query.. Required.
+:   The identifier of the connection for the Watson Query instance. Required.
 
 #### Examples
 {: #watson-query-datasource-connection-delete-cli-examples}
 
-Delete datasource connection
+Delete a data source connection.
 
 ```sh
 ibmcloud watson-query datasource-connection-delete --connection-id 3ba0b656-bbb0-4f1c-8228-e6e800d3b2fa
@@ -184,12 +183,12 @@ ibmcloud watson-query datasource-connection-delete --connection-id 3ba0b656-bbb0
 ## Users
 {: #watson-query-users-cli}
 
-Manage user access to virtualized table.
+Manage user access to a virtualized table.
 
 ### ibmcloud watson-query virtualized-table-user-grant
 {: #watson-query-cli-virtualized-table-user-grant-command}
 
-Grant a user access to a specific virtualized table.
+Grants a user access to a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-user-grant --table-name TABLE-NAME --table-schema TABLE-SCHEMA --user USER 
@@ -208,13 +207,13 @@ ibmcloud watson-query virtualized-table-user-grant --table-name TABLE-NAME --tab
     The minimum length is `1` character.
 
 --user (string)
-:   The identifier of the authorization, if grant access to all users, the value is PUBLIC, othervise the value is the watson query username. Required.
+:   The identifier of the authorization, if grant access to all users, the value is PUBLIC, othervise the value is the Watson Query username. Required.
     The minimum length is `1` character.
 
 #### Examples
 {: #watson-query-virtualized-table-user-grant-cli-examples}
 
-Grant a user access to a specific virtualized table
+Grant a user access to a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-user-grant --table-name TABLE1 --table-schema DV_IBMID_270001PD8Q --user user1@ibm.com
@@ -224,7 +223,7 @@ ibmcloud watson-query virtualized-table-user-grant --table-name TABLE1 --table-s
 ### ibmcloud watson-query virtualized-table-user-revoke
 {: #watson-query-cli-virtualized-table-user-revoke-command}
 
-Revoke user access to the virtualized table.
+Revokes user access to a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-user-revoke --user USER --table-name TABLE-NAME --table-schema TABLE-SCHEMA 
@@ -235,7 +234,7 @@ ibmcloud watson-query virtualized-table-user-revoke --user USER --table-name TAB
 {: #watson-query-virtualized-table-user-revoke-cli-options}
 
 --user (string)
-:   The watson query user name, if the value is PUBLIC, it means revoke access privilege from all watson query users. Required.
+:   The Watson Query user name, if the value is PUBLIC, it means revoke access privilege from all Watson Query users. Required.
 
 --table-name (string)
 :   The virtualized table's name. Required.
@@ -246,7 +245,7 @@ ibmcloud watson-query virtualized-table-user-revoke --user USER --table-name TAB
 #### Examples
 {: #watson-query-virtualized-table-user-revoke-cli-examples}
 
-Revoke user access to the virtualized table
+Revoke user access to a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-user-revoke --table-name TABLE1 --table-schema DV_IBMID_270001PD8Q --user user1@ibm.com
@@ -261,7 +260,7 @@ Manage service roles for users and virtualized tables.
 ### ibmcloud watson-query virtualized-table-role-grant
 {: #watson-query-cli-virtualized-table-role-grant-command}
 
-Grant a user role access to a specific virtualized table.
+Grants a user role access to a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-role-grant --table-name TABLE-NAME --table-schema TABLE-SCHEMA --role ROLE 
@@ -280,13 +279,13 @@ ibmcloud watson-query virtualized-table-role-grant --table-name TABLE-NAME --tab
     The minimum length is `1` character.
 
 --role (string)
-:   The identifier of the authorization, if grant access to all users, the value is PUBLIC, othervise the value is the watson query username. Required.
+:   The identifier of the authorization, if grant access to all users, the value is PUBLIC, othervise the value is the Watson Query username. Required.
     The minimum length is `1` character.
 
 #### Examples
 {: #watson-query-virtualized-table-role-grant-cli-examples}
 
-Grants a user role access to a specific virtualized table
+Grants a user role access to a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-role-grant --table-name TABLE1 --table-schema DV_IBMID_270001PD8Q --role DV_ENGINEER
@@ -296,7 +295,7 @@ ibmcloud watson-query virtualized-table-role-grant --table-name TABLE1 --table-s
 ### ibmcloud watson-query virtualized-table-role-revoke
 {: #watson-query-cli-virtualized-table-role-revoke-command}
 
-Revoke roles access to a virtualized table.
+Revokes roles access to a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-role-revoke --role ROLE --table-name TABLE-NAME --table-schema TABLE-SCHEMA 
@@ -307,7 +306,7 @@ ibmcloud watson-query virtualized-table-role-revoke --role ROLE --table-name TAB
 {: #watson-query-virtualized-table-role-revoke-cli-options}
 
 --role (string)
-:   The watson query role type. Values can be DV_ADMIN, DV_ENGINEER, DV_STEWARD, or DV_WORKER, which correspond to MANAGER, ENGINEER, STEWARD, and USER roles in the user interface. Required.
+:   The Watson Query role type. Values can be DV_ADMIN, DV_ENGINEER, DV_STEWARD, or DV_WORKER, which correspond to MANAGER, ENGINEER, STEWARD, and USER roles in the user interface. Required.
 
 --table-name (string)
 :   The virtualized table's name. Required.
@@ -318,7 +317,7 @@ ibmcloud watson-query virtualized-table-role-revoke --role ROLE --table-name TAB
 #### Examples
 {: #watson-query-virtualized-table-role-revoke-cli-examples}
 
-Revoke roles access to a virtualized table
+Revoke roles access to a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-role-revoke --table-name TABLE1 --table-schema DV_IBMID_270001PD8Q --role DV_ENGINEER
@@ -339,12 +338,12 @@ ibmcloud watson-query tables-for-role --role ROLE
 {: #watson-query-tables-for-role-cli-options}
 
 --role (string)
-:   Watson Query has four roles: MANAGER, STEWARD, ENGINEER and USER The value of rolename should be one of them. Required.
+:   Watson Query has four roles: MANAGER, STEWARD, ENGINEER, and USER The value of role should be one of these values. Required.
 
 #### Examples
 {: #watson-query-tables-for-role-cli-examples}
 
-Get virtualized tables by role
+Get virtualized tables by role.
 
 ```sh
 ibmcloud watson-query tables-for-role --role DV_ENGINEER
@@ -364,15 +363,15 @@ ibmcloud watson-query tables-for-role --role DV_ENGINEER
 ```
 {: screen}
 
-## Securities
+## Governance
 {: #watson-query-securities-cli}
 
-Manage Wason Knowledge Catalog(WKC) policy enforcement status.
+Manage Watson Knowledge Catalog policy enforcement status.
 
 ### ibmcloud watson-query policy-status-update
 {: #watson-query-cli-policy-status-update-command}
 
-Turn on WKC policy enforcement status.
+Turns on Watson Knowledge Catalog policy enforcement status.
 
 ```sh
 ibmcloud watson-query policy-status-update --status STATUS 
@@ -383,12 +382,12 @@ ibmcloud watson-query policy-status-update --status STATUS
 {: #watson-query-policy-status-update-cli-options}
 
 --status (string)
-:   Set the status of WKC policy - can be 'enable' or 'disable'. Required.
+:   Set the status of a Watson Knowledge Catalog policy. Can be 'enable' or 'disable'. Required.
 
 #### Examples
 {: #watson-query-policy-status-update-cli-examples}
 
-Turn on or off WKC policy enforcement status
+Turn on or off Watson Knowledge Catalog policy enforcement status.
 
 ```sh
 ibmcloud watson-query policy-status-update --enable
@@ -398,7 +397,7 @@ ibmcloud watson-query policy-status-update --enable
 ### ibmcloud watson-query policy-status
 {: #watson-query-cli-policy-status-command}
 
-Get WKC policy enforcement status, return enabled or disabled.
+Gets Watson Knowledge Catalog policy enforcement status. Returns enabled or disabled.
 
 ```sh
 ibmcloud watson-query policy-status 
@@ -408,7 +407,7 @@ ibmcloud watson-query policy-status
 #### Examples
 {: #watson-query-policy-status-cli-examples}
 
-Get WKC policy enforcement status
+Get Watson Knowledge Catalog policy enforcement status.
 
 ```sh
 ibmcloud watson-query policy-status
@@ -418,12 +417,12 @@ ibmcloud watson-query policy-status
 ## Virtualization
 {: #watson-query-virtualization-cli}
 
-Create virtualized table.
+Create virtualized tables.
 
 ### ibmcloud watson-query virtualized-table-create
 {: #watson-query-cli-virtualized-table-create-command}
 
-Transform a given data source table into a virtualized table.
+Transforms a given data source table into a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-create --source-table-name SOURCE-NAME --source-table-def-file SOURCE-TABLE-DEF-FILE --sources SOURCES --virtualized-table-name VIRTUALIZED-NAME --virtualized-schema VIRTUALIZED-SCHEMA --virtualized-table-def-file VIRTUALIZED-TABLE-DEF-FILE [--is-included-columns IS-INCLUDED-COLUMNS] [--replace REPLACE] 
@@ -470,7 +469,7 @@ ibmcloud watson-query  virtualized-table-create --source-table-name table1 --sou
 ### ibmcloud watson-query virtualized-table-delete
 {: #watson-query-cli-virtualized-table-delete-command}
 
-Remove specified virtualized table. You must specify the schema and table name.
+Removes a virtualized table. You must specify the schema and table name.
 
 ```sh
 ibmcloud watson-query virtualized-table-delete --virtualized-schema VIRTUALIZED-SCHEMA --virtualized-name VIRTUALIZED-NAME 
@@ -489,7 +488,7 @@ ibmcloud watson-query virtualized-table-delete --virtualized-schema VIRTUALIZED-
 #### Examples
 {: #watson-query-virtualized-table-delete-cli-examples}
 
-Delete virtualized table
+Delete a virtualized table.
 
 ```sh
 ibmcloud watson-query virtualized-table-delete --virtualized-schema DV_IBMID_270001PD8Q --virtualized-name TABLE1
@@ -499,12 +498,12 @@ ibmcloud watson-query virtualized-table-delete --virtualized-schema DV_IBMID_270
 ## Primary catalog
 {: #watson-query-primary-catalog-cli}
 
-Manage the primary WKC catalog information in watson query console.
+Manage the primary Watson Knowledge Catalog catalog information in Watson Query console.
 
 ### ibmcloud watson-query primary-catalog
 {: #watson-query-cli-primary-catalog-command}
 
-Get primary catalog ID from the table.
+Gets the primary catalog ID from the table.
 
 ```sh
 ibmcloud watson-query primary-catalog 
@@ -514,7 +513,7 @@ ibmcloud watson-query primary-catalog
 #### Examples
 {: #watson-query-primary-catalog-cli-examples}
 
-Get primary catalog ID from the table DVSYS.INSTANCE_INFO
+Get primary catalog ID from the table DVSYS.INSTANCE_INFO.
 
 ```sh
 ibmcloud watson-query primary-catalog
@@ -524,7 +523,7 @@ ibmcloud watson-query primary-catalog
 ### ibmcloud watson-query primary-catalog-set
 {: #watson-query-cli-primary-catalog-set-command}
 
-Insert primary catalog ID into table DVSYS.INSTANCE_INFO.
+Inserts the primary catalog ID into table DVSYS.INSTANCE_INFO.
 
 ```sh
 ibmcloud watson-query primary-catalog-set --guid GUID 
@@ -540,7 +539,7 @@ ibmcloud watson-query primary-catalog-set --guid GUID
 #### Examples
 {: #watson-query-primary-catalog-set-cli-examples}
 
-Insert primary catalog ID into table DVSYS.INSTANCE_INFO
+Insert primary catalog ID into table DVSYS.INSTANCE_INFO.
 
 ```sh
 ibmcloud watson-query primary-catalog-set --guid d77fc432-9b1a-4938-a2a5-9f37e08041f6
@@ -550,7 +549,7 @@ ibmcloud watson-query primary-catalog-set --guid d77fc432-9b1a-4938-a2a5-9f37e08
 ### ibmcloud watson-query primary-catalog-delete
 {: #watson-query-cli-primary-catalog-delete-command}
 
-Remove the setting of the primary catalog for enforced publication.
+Removes the setting of the primary catalog for enforced publication.
 
 ```sh
 ibmcloud watson-query primary-catalog-delete --guid GUID 
@@ -561,17 +560,17 @@ ibmcloud watson-query primary-catalog-delete --guid GUID
 {: #watson-query-primary-catalog-delete-cli-options}
 
 --guid (string)
-:   The watson query user name, if the value is PUBLIC, it means revoke access privilege from all watson query users. Required.
+:   The Watson Query user name. If the value is PUBLIC, revoke access privilege from all Watson Query users. Required.
 
 ## Publish objects
 {: #watson-query-publish-objects-cli}
 
-Publish virtualized table to WKC.
+Publish virtualized tables to Watson Knowledge Catalog.
 
 ### ibmcloud watson-query virtualized-table-publish
 {: #watson-query-cli-virtualized-table-publish-command}
 
-Publish virtualized tables to WKC.
+Publishes virtualized tables to Watson Knowledge Catalog.
 
 ```sh
 ibmcloud watson-query virtualized-table-publish --catalog-id CATALOG-ID --allow-duplicates ALLOW-DUPLICATES --assets ASSETS 
@@ -585,7 +584,7 @@ ibmcloud watson-query virtualized-table-publish --catalog-id CATALOG-ID --allow-
 :   Catalog ID. Required.
 
 --allow-duplicates (bool)
-:   Whether duplicated asset allowd. Required.
+:   Whether duplicate assets are allowd. Required.
 
 --assets ([CatalogPublishParametersAssetsItem[]](#cli-catalog-publish-parameters-assets-item-example-schema))
 :   Asset description. Example: "[{\"schema\": \"db2inst1\",\"table\": \"employee\"}]". Required.
@@ -593,7 +592,7 @@ ibmcloud watson-query virtualized-table-publish --catalog-id CATALOG-ID --allow-
 #### Examples
 {: #watson-query-virtualized-table-publish-cli-examples}
 
-Publish virtualized tables to WKC
+Publish virtualized tables to Watson Knowledge Catalog.
 
 ```sh
 ibmcloud watson-query virtualized-table-publish --catalog-id 12c60f7e-c366-4cda-ba3a-bfbb577a5f56 --allow-duplicates true --virtualized-schema DV_IBMID_6610020D12 --virtualized-table EMPLOYEE
