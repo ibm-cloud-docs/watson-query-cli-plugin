@@ -4,7 +4,7 @@ copyright:
   years: 2022
 lastupdated: "2022-01-10"
 
-subcollection: _your-cli-subcollection_
+subcollection: watson-query-cli-plugin
 
 keywords: Watson Query CLI, Watson Query command line , Watson Query terminal, Watson Query shell, Watson Query, Data Virtualization
 
@@ -26,7 +26,7 @@ The {{site.data.keyword.cloud}} command-line interface (CLI) provides extra capa
 {: shortdesc} 
 
 ## Prerequisites
-{: #<cli_name>-cli-prereq}
+{: #watson-query-cli-plugin-cli-prereq}
 
 * Install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-getting-started).
 * Install the <CLI_name> CLI by running the following command:
