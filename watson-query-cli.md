@@ -1,10 +1,10 @@
 ---
  
 copyright:
-  years: 2022
-lastupdated: "2022-01-10"
+  years: 2024
+lastupdated: "2024-08-15"
 
-subcollection: _your-cli-subcollection_
+subcollection: watson-query-cli-plugin
 
 keywords: Watson Query CLI, Watson Query command line , Watson Query terminal, Watson Query shell, Watson Query, Data Virtualization
 
@@ -26,7 +26,7 @@ The {{site.data.keyword.cloud}} command-line interface (CLI) provides extra capa
 {: shortdesc} 
 
 ## Prerequisites
-{: #<cli_name>-cli-prereq}
+{: #watson-query-cli-plugin-cli-prereq}
 
 * Install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-getting-started).
 * Install the <CLI_name> CLI by running the following command:
@@ -56,13 +56,13 @@ Store them in a [credentials file](https://cloud.ibm.com/apidocs/cloudant?code=g
 As an alternative to `ibmcloud login`, you can set the environment variable `DATA_VIRTUALIZATION_APIKEY` to an IAM API key.
 {: tip}
 
-{{site.data.keyword.cloud_notm}} CLI requires Java&trade 1.8.0. You can download the CLI from {{site.data.keyword.cloud_notm}} to use on your local system as a complement to the {{site.data.keyword.cloud_notm}} console.
+{{site.data.keyword.cloud_notm}} CLI requires Java 1.8.0. You can download the CLI from {{site.data.keyword.cloud_notm}} to use on your local system as a complement to the {{site.data.keyword.cloud_notm}} console.
 {: note}
 
 ## Data sources
 {: #watson-query-data-sources-cli}
 
-Connect data sources to the watson query service.
+Connect data sources to the Watson Query service.
 
 ### ibmcloud watson-query datasource-connections
 {: #watson-query-cli-datasource-connections-command}
@@ -117,7 +117,7 @@ ibmcloud watson-query datasource-connections
 ### ibmcloud watson-query datasource-connection-add
 {: #watson-query-cli-datasource-connection-add-command}
 
-Adds a data source connection to the watson query service.
+Adds a data source connection to the Watson Query service.
 
 ```sh
 ibmcloud watson-query datasource-connection-add --datasource-type DATASOURCE-TYPE --name NAME --origin-country ORIGIN-COUNTRY --properties PROPERTIES [--asset-category ASSET-CATEGORY] 

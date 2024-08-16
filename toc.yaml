@@ -8,10 +8,8 @@ toc:
     product-page: https://ibm.com/cloud/watson-query
     path: watson-query-cli-plugin
     label: Watson Query CLI
-
   entries: 
   - navgroup:
       id: reference
       topics: 
       - watson-query-cli.md
-
